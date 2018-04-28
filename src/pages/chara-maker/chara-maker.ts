@@ -26,7 +26,9 @@ export class CharaMakerPage {
     sessionStorage.setItem('ability', JSON.stringify(this.abilities))
   }
   ionViewWillEnter() {
-    this.abilities = JSON.parse(sessionStorage.getItem('ability'))
+    if (sessionStorage.getItem('ability')) {
+      this.abilities = JSON.parse(sessionStorage.getItem('ability'))
+    }
   }
 
 }
