@@ -15,17 +15,7 @@
         <ion-col *ngFor="let j of [i, i+1, i+2]">
           <ion-item *ngIf="abilities[j].name != ''">
             <ion-label floating>{{abilities[j].name}}</ion-label>
-            <ion-input type="number" [(ngModel)]="abilities[j].point" [ngModelOptions]="{standalone: true}" required min="0"></ion-input>
-            <!--
-            <ion-select [(ngModel)]="abilities[j].point" interface="action-sheet"  [ngModelOptions]="{standalone: true}">
-              <ion-option value="1">1</ion-option>
-              <ion-option value="2">2</ion-option>
-              <ion-option value="3">3</ion-option>
-              <ion-option value="4">4</ion-option>
-              <ion-option value="5">5</ion-option>
-              <ion-option value="6">6</ion-option>
-            </ion-select>
-            -->
+            <ion-input type="number" [(ngModel)]="abilities[j].point" [ngModelOptions]="{standalone: true}" required min="1"></ion-input>
           </ion-item>
         </ion-col>
       </ion-row>

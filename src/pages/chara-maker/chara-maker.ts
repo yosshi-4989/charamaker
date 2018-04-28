@@ -71,15 +71,15 @@ export class CharaMakerPage {
     }
   }
   _generate_ability_and_status() {
-    this.ability['STR'] = this.abilities[0].point;
-    this.ability['DEX'] = this.abilities[1].point;
-    this.ability['INT'] = this.abilities[2].point;
-    this.ability['CON'] = this.abilities[3].point;
-    this.ability['APP'] = this.abilities[4].point;
-    this.ability['POW'] = this.abilities[5].point;
-    this.ability['SIZ'] = this.abilities[6].point;
+    this.ability['STR'] = 1*this.abilities[0].point;
+    this.ability['DEX'] = 1*this.abilities[1].point;
+    this.ability['INT'] = 1*this.abilities[2].point;
+    this.ability['CON'] = 1*this.abilities[3].point;
+    this.ability['APP'] = 1*this.abilities[4].point;
+    this.ability['POW'] = 1*this.abilities[5].point;
+    this.ability['SIZ'] = 1*this.abilities[6].point;
     this.ability['SAN'] = 5 * this.ability['POW'];
-    this.ability['EDU'] = this.abilities[8].point;
+    this.ability['EDU'] = 1*this.abilities[8].point;
     this.ability['IDEA'] = 5 * this.ability['INT'];
     this.ability['LUCK'] = 5 * this.ability['POW'];
     this.ability['KNOW'] = 5 * this.ability['EDU'];
@@ -89,6 +89,6 @@ export class CharaMakerPage {
 
     this.status['HP'] = Math.ceil((1*this.ability['CON'] + 1*this.ability['SIZ']) / 2);
     this.status['MP'] = this.ability['POW'];
-    this.status['SAMpoint'] = 5
+    this.status['SAMpoint'] = this.ability['SAN'];
   }
 }
