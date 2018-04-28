@@ -8,13 +8,15 @@
 </ion-header>
 
 <ion-content>
+  <h3 style="text-align: center">能力値</h3>
   <form padding (submit)="submitAbility()">
     <ion-grid>
       <ion-row *ngFor="let i of [0, 3, 6]">
         <ion-col *ngFor="let j of [i, i+1, i+2]">
-          <ion-item>
-            <ion-label>{{abilities[j].name}}</ion-label>
-            <ion-select [(ngModel)]="abilities[j].point" interface="action-sheet" *ngIf="abilities[j].name != ''"  [ngModelOptions]="{standalone: true}">
+          <ion-item *ngIf="abilities[j].name != ''">
+            <ion-label floating>{{abilities[j].name}}</ion-label>
+            <ion-select [(ngModel)]="abilities[j].point" interface="action-sheet"  [ngModelOptions]="{standalone: true}">
+              <ion-option value=""></ion-option>
               <ion-option value="1">1</ion-option>
               <ion-option value="2">2</ion-option>
               <ion-option value="3">3</ion-option>

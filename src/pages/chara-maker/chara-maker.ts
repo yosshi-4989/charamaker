@@ -18,16 +18,28 @@ export class CharaMakerPage {
     {name: '', point: null},
     {name: 'EDU', point: null}
   ];
+  addAbilities: Array<{name: string, point: number}> =[
+    {name: 'SAN', point: null},
+    {name: 'IDEA', point: null},
+    {name: 'LUCK', point: null},
+    {name: 'KNOW', point: null},
+    {name: 'MAXSAN', point: null},
+    {name: 'DB', point: null}
+  ]
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   submitAbility() {
-    sessionStorage.setItem('ability', JSON.stringify(this.abilities))
+    this.addAbilities['SAN'] = this.abilities['POW'];
+    this.addAbilities['IDEA'] = 5 * this.abilities['INT'];
+    this.addAbilities['LUCK'] = 5 * this.abilities['POW'];
+    this.addAbilities['KNOW'] = 5 * this.abilities['EDU'];
+    localStorage.setItem('ability', JSON.stringify(this.abilities))
   }
   ionViewWillEnter() {
-    if (sessionStorage.getItem('ability')) {
-      this.abilities = JSON.parse(sessionStorage.getItem('ability'))
+    if (localStorage.getItem('ability')) {
+      this.abilities = JSON.parse(localStorage.getItem('ability'))
     }
   }
 
