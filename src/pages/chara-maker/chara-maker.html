@@ -8,21 +8,25 @@
 </ion-header>
 
 <ion-content>
-  <ion-grid>
-    <ion-row *ngFor="let i of [0, 3, 6]">
-      <ion-col *ngFor="let j of [i, i+1, i+2]">
-        <ion-item>
-          <ion-label>{{avilities[j].name}}</ion-label>
-          <ion-select [(ngModel)]="avilities[j].point" interface="action-sheet" *ngIf="avilities[j].name != ''">
-            <ion-option value="1">1</ion-option>
-            <ion-option value="2">2</ion-option>
-            <ion-option value="3">3</ion-option>
-            <ion-option value="4">4</ion-option>
-            <ion-option value="5">5</ion-option>
-            <ion-option value="6">6</ion-option>
-          </ion-select>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <form padding (submit)="submitAbility()">
+    <ion-grid>
+      <ion-row *ngFor="let i of [0, 3, 6]">
+        <ion-col *ngFor="let j of [i, i+1, i+2]">
+          <ion-item>
+            <ion-label>{{abilities[j].name}}</ion-label>
+            <ion-select [(ngModel)]="abilities[j].point" interface="action-sheet" *ngIf="abilities[j].name != ''"  [ngModelOptions]="{standalone: true}">
+              <ion-option value="1">1</ion-option>
+              <ion-option value="2">2</ion-option>
+              <ion-option value="3">3</ion-option>
+              <ion-option value="4">4</ion-option>
+              <ion-option value="5">5</ion-option>
+              <ion-option value="6">6</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <button type="submit" ion-button block>確定</button>
+  </form>
+
 </ion-content>
