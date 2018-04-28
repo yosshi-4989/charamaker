@@ -27,7 +27,6 @@ export class CharaMakerPage {
   points: Array<number> = Array.from(Array(25), (k, v) => v+1);
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
-    console.log(this.points)
   }
 
   ionViewDidLoad() {
