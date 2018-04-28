@@ -15,7 +15,7 @@ export class CharaMakerPage {
     {name: 'APP', point: null},
     {name: 'POW', point: null},
     {name: 'SIZ', point: null},
-    {name: 'SAN', point: null},
+    {name: '', point: null},
     {name: 'EDU', point: null}
   //  {name: 'IDEA', point: null},
   //  {name: 'LUCK', point: null},
