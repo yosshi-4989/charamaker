@@ -3,12 +3,11 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>キャラクター作成</ion-title>
+    <ion-title>キャラクター作成：能力値</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <h3 style="text-align: center">能力値</h3>
   <form padding (submit)="submitAbility()" #f="ngForm">
     <ion-grid>
       <ion-row *ngFor="let i of [0, 3, 6]">

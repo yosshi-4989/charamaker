@@ -1,0 +1,51 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>キャラクター作成：確認画面</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <h4 style="text-align: center">パーソナルデータ</h4>
+  <ion-item>名前：{{getName()}}</ion-item>
+  <ion-item>年齢：{{parsonalData.age}}</ion-item>
+  <ion-item>性別：{{parsonalData.sex}}</ion-item>
+  <ion-item>職業：{{parsonalData.job}}</ion-item>
+  <ion-item>出身地：{{parsonalData.growPlace}}</ion-item>
+  <ion-item>その他：{{parsonalData.memo}}</ion-item>
+
+  <h4 style="text-align: center">能力値</h4>
+  <ion-grid>
+    <ion-row>
+      <ion-col>STR：{{ability.STR}}</ion-col>
+      <ion-col>DEX：{{ability.DEX}}</ion-col>
+      <ion-col>INT：{{ability.INT}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>CON：{{ability.CON}}</ion-col>
+      <ion-col>APP：{{ability.APP}}</ion-col>
+      <ion-col>POW：{{ability.POW}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>SIZ：{{ability.SIZ}}</ion-col>
+      <ion-col>SAN：{{ability.SAN}}</ion-col>
+      <ion-col>EDU：{{ability.EDU}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>アイデア：{{ability.IDEA}}</ion-col>
+      <ion-col>幸運：{{ability.LUCK}}</ion-col>
+      <ion-col>知識：{{ability.KNOW}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>最大正気度：{{ability.MAXSAN}}</ion-col>
+      <ion-col>ダメージボーナス：{{ability.DB}}</ion-col>
+    </ion-row>
+  </ion-grid>
+  <h4 style="text-align: center">技能</h4>
+  <ion-item *ngFor="let skill of skills">{{skill.name}}：{{skill.point}}</ion-item>
+  <form padding (submit)="submitConfirmation()" #f="ngForm">
+    <button type="submit" ion-button block>登録</button>
+  </form>
+</ion-content>

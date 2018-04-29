@@ -121,6 +121,7 @@ export class SkillPage {
       }
     }, skills);
     localStorage.setItem('skills', JSON.stringify(skills));
+    this.navCtrl.push('ParsonalPage');
   }
   sumSkillPoint(skill: {'name': string, 'default': number, 'jobPoint': number, 'freePoint': number, 'point': number, 'addFlag': boolean}) {
     var point = 1*skill.default;

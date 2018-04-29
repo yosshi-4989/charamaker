@@ -45,7 +45,7 @@ export class CharaMakerPage {
     // TODO 入力バリデーションを作る
     this._generate_ability_and_status();
     localStorage.setItem('abilities', JSON.stringify(this.abilities));
-    localStorage.setItem('ability', JSON.stringify(this.abilities));
+    localStorage.setItem('ability', JSON.stringify(this.ability));
     localStorage.setItem('status', JSON.stringify(this.status));
 
     var skillPoint = {

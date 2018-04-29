@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>キャラクター作成：パーソナルデータ</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <form padding (submit)="submitParsonal()" #f="ngForm">
+    <ion-item>
+      <ion-label floating>名前(必須)</ion-label>
+      <ion-input type="text" [(ngModel)]="parsonalData.name" [ngModelOptions]="{standalone: true}" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>ふりがな(フリガナ)</ion-label>
+      <ion-input type="text" [(ngModel)]="parsonalData.kana" [ngModelOptions]="{standalone: true}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>年齢</ion-label>
+      <ion-input type="number" [(ngModel)]="parsonalData.age" [ngModelOptions]="{standalone: true}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>性別</ion-label>
+      <ion-input type="text" [(ngModel)]="parsonalData.sex" [ngModelOptions]="{standalone: true}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>職業</ion-label>
+      <ion-input type="text" [(ngModel)]="parsonalData.job" [ngModelOptions]="{standalone: true}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>出身地</ion-label>
+      <ion-input type="text" [(ngModel)]="parsonalData.growPlace" [ngModelOptions]="{standalone: true}"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>その他</ion-label>
+      <ion-input type="text" [(ngModel)]="parsonalData.memo" [ngModelOptions]="{standalone: true}"></ion-input>
+    </ion-item>
+    <button type="submit" ion-button block>確定</button>
+  </form>
+</ion-content>
