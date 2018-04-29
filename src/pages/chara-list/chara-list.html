@@ -8,7 +8,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-item *ngFor="let chara of charaList" [navPush]="'CharactorPage'" [navParams]="{param: chara, name: chara.parsonalData.name}">
+  <ion-item *ngFor="let chara of charaList" [navPush]="'CharactorPage'" [navParams]="{id: charaList.indexOf(chara)}">
     <h2>{{chara.parsonalData.name}}</h2>
   </ion-item>
 </ion-content>

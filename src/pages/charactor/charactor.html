@@ -4,7 +4,57 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content padding>
+  <h3 style="text-align: center;">
+    {{charactor.parsonalData.name}}<span *ngIf="!charactor.parsonalData.kana">({{ charactor.parsonalData.kana }})</span>
+  </h3>
+  <ion-grid>
+    <ion-row>
+      <ion-col>年齢：{{charactor.parsonalData.age}}</ion-col>
+      <ion-col>性別：{{charactor.parsonalData.sex}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>職業：{{charactor.parsonalData.job}}</ion-col>
+      <ion-col>出身地：{{charactor.parsonalData.growPlace}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>その他：{{charactor.parsonalData.memo}}</ion-col>
+    </ion-row>
+  </ion-grid>
 
+  <hr>
+  <h4 style="text-align: center">能力値</h4>
+  <ion-grid>
+    <ion-row>
+      <ion-col>STR：{{charactor.ability.STR}}</ion-col>
+      <ion-col>DEX：{{charactor.ability.DEX}}</ion-col>
+      <ion-col>INT：{{charactor.ability.INT}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>CON：{{charactor.ability.CON}}</ion-col>
+      <ion-col>APP：{{charactor.ability.APP}}</ion-col>
+      <ion-col>POW：{{charactor.ability.POW}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>SIZ：{{charactor.ability.SIZ}}</ion-col>
+      <ion-col>SAN：{{charactor.ability.SAN}}</ion-col>
+      <ion-col>EDU：{{charactor.ability.EDU}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>アイデア：{{charactor.ability.IDEA}}</ion-col>
+      <ion-col>幸運：{{charactor.ability.LUCK}}</ion-col>
+      <ion-col>知識：{{charactor.ability.KNOW}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>最大正気度：{{charactor.ability.MAXSAN}}</ion-col>
+      <ion-col>ダメージボーナス：{{charactor.ability.DB}}</ion-col>
+    </ion-row>
+  </ion-grid>
+  <hr>
+  <h4 style="text-align: center">技能</h4>
+  <ion-grid>
+    <ion-row *ngFor="let skill of charactor.skills">
+      <ion-col>{{skill.name}}：{{skill.point}}</ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
