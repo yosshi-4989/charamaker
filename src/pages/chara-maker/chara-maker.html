@@ -8,6 +8,9 @@
 </ion-header>
 
 <ion-content>
+  <div style="text-align: center; padding-top: 10px;">
+   <button ion-button (click)="diceRoll()" style="margin: auto;">ダイスロール</button>
+  </div>
   <form padding (submit)="submitAbility()" #f="ngForm">
     <ion-grid>
       <ion-row *ngFor="let i of [0, 3, 6]">
@@ -21,5 +24,4 @@
     </ion-grid>
     <button type="submit" ion-button block [disabled]="!isValid()">確定</button>
   </form>
-
 </ion-content>

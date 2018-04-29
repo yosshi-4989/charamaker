@@ -86,7 +86,7 @@ export class CharaMakerPage {
     this.ability['SAN'] = 5 * this.ability['POW'];
     this.ability['IDEA'] = 5 * this.ability['INT'];
     this.ability['LUCK'] = 5 * this.ability['POW'];
-    this.ability['KNOW'] = 5 * this.ability['EDU'];
+    this.ability['KNOW'] = Math.min(5 * this.ability['EDU'], 99);
     this.ability['MAXSAN'] = 99;
     var bonus_sum = 1*this.ability['STR'] + 1*this.ability['SIZ'];
     this.ability['DB'] = this._calc_db(bonus_sum);
@@ -109,5 +109,20 @@ export class CharaMakerPage {
       }
     }
     return bool;
+  }
+
+  diceRoll() {
+    for (var abi of this.abilities) {
+      if (abi.name == "EDU") {
+        abi.point = this.getRandom(1,6) + this.getRandom(1,6) + this.getRandom(1,6) + 3;
+      } else if (abi.name == "SIZ" || abi.name == "INT") {
+        abi.point = this.getRandom(1,6) + this.getRandom(1,6) + 6;
+      } else if (abi.name != "") {
+        abi.point = this.getRandom(1,6) + this.getRandom(1,6) + this.getRandom(1,6);
+      }
+    }
+  }
+  getRandom(min, max) {
+    return Math.ceil(Math.random() * (max - min) + min);
   }
 }

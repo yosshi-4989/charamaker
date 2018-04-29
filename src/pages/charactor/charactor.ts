@@ -60,7 +60,5 @@ export class CharactorPage {
   ionViewDidLoad() {
     var i = this.navParams.get('id');
     this.charactor = JSON.parse(localStorage.getItem('charaList'))[i];
-    console.log(this.charactor);
-    console.log(this.charactor.parsonalData.name);
   }
 }
