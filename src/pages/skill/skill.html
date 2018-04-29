@@ -4,11 +4,47 @@
   </ion-navbar>
 </ion-header>
 
-
 <ion-content>
   <h3 style="text-align: center">技能</h3>
-  <h6 style="text-align: center"></h6>
+  <h6 style="text-align: center">
+    {{calcUsablePoint()}}
+  </h6>
   <form padding (submit)="submitSkill()">
-    <button type="submit" ion-button block [navPush]="'SkillPage'">確定</button>
+    <table>
+      <tr>
+        <th>技能名</th>
+        <th>職業P</th>
+        <th>自由P</th>
+        <th>合計P</th>
+      </tr>
+      <tr *ngFor="let skill of skills">
+        <td>
+          <ion-label *ngIf="skill.name != ''">
+            {{skill.name}}
+            <span style="font-size: 10px">({{skill.default}}%)</span>
+          </ion-label>
+          <ion-label *ngIf="skill.name == ''">
+            オリジナル
+            <span style="font-size: 10px">({{skill.default}}%)</span>
+          </ion-label>
+        </td>
+        <td>
+          <ion-item>
+            <ion-input type="number" [(ngModel)]="skill.jobPoint" [ngModelOptions]="{standalone: true}" min="0"></ion-input>
+          </ion-item>
+        </td>
+        <td>
+          <ion-item>
+            <ion-input type="number" [(ngModel)]="skill.freePoint" [ngModelOptions]="{standalone: true}" min="0"></ion-input>
+          </ion-item>
+        </td>
+        <td>
+          <ion-item style="text-align: right;">
+              {{sumSkillPoint(skill)}}
+          </ion-item>
+        </td>
+      </tr>
+    </table>
+    <button type="submit" ion-button block>確定</button>
   </form>
 </ion-content>
