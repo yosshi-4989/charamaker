@@ -11,6 +11,10 @@ export class SkillPage {
     'jobSkillPoint': null,
     'freeSkillPoint': null
   };
+  usableSkillPoint: {'jobSkillPoint': number, 'freeSkillPoint': number} = {
+    'jobSkillPoint': null,
+    'freeSkillPoint': null
+  };
   skills: {'name': string, 'default': number, 'jobPoint': number, 'freePoint': number, 'point': number, 'addFlag': boolean}[] = [
     {'name': '居合い', 'default': 1, 'jobPoint': null, 'freePoint': null, 'point': null, 'addFlag': false},
     {'name': '言いくるめ', 'default': 5, 'jobPoint': null, 'freePoint': null, 'point': null, 'addFlag': false},
@@ -86,33 +90,63 @@ export class SkillPage {
   ionViewWillEnter() {
     if (localStorage.getItem('abilities')) {
       this.skillPoint = JSON.parse(localStorage.getItem('skillPoint'));
+      this.usableSkillPoint = JSON.parse(localStorage.getItem('skillPoint'));
+    }
+    if (localStorage.getItem('skills')) {
+      var skills = JSON.parse(localStorage.getItem('skills'));
+      console.log(skills)
+      this.skills.forEach(function(skill){
+        if (this[skill.name]) {
+          var s = this[skill.name];
+          delete this[skill.name];
+          skill.jobPoint = s[1];
+          skill.freePoint = s[2];
+          skill.point = s[3];
+        }
+      }, skills);
+      console.log(skills)
+      // TODO 技能名を変更できる技能をskillsに登録する処理を追加
     }
   }
   submitSkill() {
-    console.log('submit skill')
+    if (this.usableSkillPoint.jobSkillPoint > 0 || this.usableSkillPoint.freeSkillPoint > 0) {
+      // TODO 確認ダイアログを表示する処理を作成
+      alert("ポイントが残っています")
+      return;
+    }
+    var skills = {};
+    this.skills.forEach(function(skill){
+      if (skill.jobPoint > 0 || skill.freePoint > 0) {
+        this[skill.name] = [skill.default, skill.jobPoint, skill.freePoint, skill.point];
+      }
+    }, skills);
+    localStorage.setItem('skills', JSON.stringify(skills));
   }
   sumSkillPoint(skill: {'name': string, 'default': number, 'jobPoint': number, 'freePoint': number, 'point': number, 'addFlag': boolean}) {
     var point = 1*skill.default;
     if (skill.jobPoint) {
-      point += 1*skill.jobPoint;
+      point += Math.max(1*skill.jobPoint, 0);
     }
     if (skill.freePoint) {
-      point += 1*skill.freePoint;
+      point += Math.max(1*skill.freePoint, 0);
     }
+    skill.point = Math.min(point, 99);
     return Math.min(point, 99);
   }
   calcUsablePoint() {
     var sumPoint = [0, 0];
     this.skills.forEach(function(skill) {
       if (skill.jobPoint) {
-        this[0] += 1*skill.jobPoint;
+        this[0] += Math.max(1*skill.jobPoint, 0);
       }
       if (skill.freePoint) {
-        this[1] += 1*skill.freePoint;
+        this[1] += Math.max(1*skill.freePoint, 0);
       }
     },sumPoint);
     var jobP = this.skillPoint.jobSkillPoint - sumPoint[0];
     var freeP = this.skillPoint.freeSkillPoint - sumPoint[1];
+    this.usableSkillPoint.jobSkillPoint = jobP;
+    this.usableSkillPoint.freeSkillPoint = freeP;
     return "職業技能：" + jobP + "   自由技能：" + freeP;
   }
   calcMaxPoint(initPoint: number) {

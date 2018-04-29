@@ -18,6 +18,7 @@
         <th>合計P</th>
       </tr>
       <tr *ngFor="let skill of skills">
+        <!-- TODO addFlag=trueの時にダイアログで技能を追加する処理を作成する -->
         <td>
           <ion-label *ngIf="skill.name != ''">
             {{skill.name}}
