@@ -108,7 +108,6 @@ export class CharaMakerPage {
         break;
       }
     }
-    console.log(bool);
     return bool;
   }
 }
