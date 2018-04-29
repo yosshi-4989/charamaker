@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>キャラクター一覧</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-item *ngFor="let chara of charaList" [navPush]="'CharactorPage'" [navParams]="{param: chara, name: chara.parsonalData.name}">
+    <h2>{{chara.parsonalData.name}}</h2>
+  </ion-item>
+</ion-content>
