@@ -42,16 +42,23 @@ export class CharaMakerPage {
   }
 
   submitAbility() {
+    // TODO 入力バリデーションを作る
     this._generate_ability_and_status();
+    localStorage.setItem('abilities', JSON.stringify(this.abilities));
     localStorage.setItem('ability', JSON.stringify(this.abilities));
     localStorage.setItem('status', JSON.stringify(this.status));
+
+    var skillPoint = {
+      'jobSkillPoint': 20*this.ability['EDU'],
+      'freeSkillPoint': 10*this.ability['INT']
+    }
+    localStorage.setItem('skillPoint', JSON.stringify(skillPoint));
+
+    this.navCtrl.push('SkillPage');
   }
   ionViewWillEnter() {
-    if (localStorage.getItem('ability')) {
-      this.abilities = JSON.parse(localStorage.getItem('ability'));
-    }
-    if (localStorage.getItem('status')) {
-      this.status = JSON.parse(localStorage.getItem('status'));
+    if (localStorage.getItem('abilities')) {
+      this.abilities = JSON.parse(localStorage.getItem('abilities'));
     }
   }
 
@@ -71,15 +78,12 @@ export class CharaMakerPage {
     }
   }
   _generate_ability_and_status() {
-    this.ability['STR'] = 1*this.abilities[0].point;
-    this.ability['DEX'] = 1*this.abilities[1].point;
-    this.ability['INT'] = 1*this.abilities[2].point;
-    this.ability['CON'] = 1*this.abilities[3].point;
-    this.ability['APP'] = 1*this.abilities[4].point;
-    this.ability['POW'] = 1*this.abilities[5].point;
-    this.ability['SIZ'] = 1*this.abilities[6].point;
+    this.abilities.forEach(function( value ) {
+      if (value.name != '') {
+        this.ability[value.name] = 1*value.point;
+      }
+    }, this);
     this.ability['SAN'] = 5 * this.ability['POW'];
-    this.ability['EDU'] = 1*this.abilities[8].point;
     this.ability['IDEA'] = 5 * this.ability['INT'];
     this.ability['LUCK'] = 5 * this.ability['POW'];
     this.ability['KNOW'] = 5 * this.ability['EDU'];
@@ -89,6 +93,6 @@ export class CharaMakerPage {
 
     this.status['HP'] = Math.ceil((1*this.ability['CON'] + 1*this.ability['SIZ']) / 2);
     this.status['MP'] = this.ability['POW'];
-    this.status['SAMpoint'] = this.ability['SAN'];
+    this.status['SANpoint'] = this.ability['SAN'];
   }
 }
