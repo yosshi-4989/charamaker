@@ -20,7 +20,7 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-    <button type="submit" ion-button block [disabled]="!f.form.valid">確定{{!f.form.valid}}</button>
+    <button type="submit" ion-button block [disabled]="!isValid()">確定</button>
   </form>
 
 </ion-content>

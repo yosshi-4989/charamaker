@@ -95,4 +95,20 @@ export class CharaMakerPage {
     this.status['MP'] = this.ability['POW'];
     this.status['SANpoint'] = this.ability['SAN'];
   }
+
+  isValid() {
+    var bool = true;
+    for (var abi of this.abilities) {
+      if (abi.name == '') {
+        continue;
+      }
+
+      if (!abi.point || abi.point <= 0) {
+        bool = false;
+        break;
+      }
+    }
+    console.log(bool);
+    return bool;
+  }
 }
