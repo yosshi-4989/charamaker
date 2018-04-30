@@ -88,7 +88,12 @@ export class SkillPage {
   }
 
   ionViewWillEnter() {
-    if (localStorage.getItem('abilities')) {
+    if (localStorage.getItem('ability')) {
+      var ability = JSON.parse(localStorage.getItem('ability'));
+      this.skills[7].default = 2 * ability.DEX;
+      this.skills[48].default = Math.min(5 * ability.EDU, 99);
+    }
+    if (localStorage.getItem('skillPoint')) {
       this.skillPoint = JSON.parse(localStorage.getItem('skillPoint'));
       this.usableSkillPoint = JSON.parse(localStorage.getItem('skillPoint'));
     }
