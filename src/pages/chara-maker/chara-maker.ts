@@ -123,6 +123,6 @@ export class CharaMakerPage {
     }
   }
   getRandom(min, max) {
-    return Math.ceil(Math.random() * (max - min) + min);
+    return Math.floor(Math.random() * (max - min) + min);
   }
 }
