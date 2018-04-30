@@ -73,9 +73,9 @@ export class ComfirmationPage {
       'skills': this.skills
     };
     var charaList = [];
-    if (localStorage.getItem('charaList')) {
-      charaList = JSON.parse(localStorage.getItem('charaList'));
-    }
+    //if (localStorage.getItem('charaList')) {
+    //  charaList = JSON.parse(localStorage.getItem('charaList'));
+    //}
     
     charaList.push(chara);
     localStorage.setItem('charaList', JSON.stringify(charaList));

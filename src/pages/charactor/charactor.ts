@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
+import { MyApp } from '../../app/app.component';
 
 @IonicPage({
   segment: 'charactor/:id',
@@ -10,6 +11,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'charactor.html',
 })
 export class CharactorPage {
+  charaIndex: number;
   charactor: {
     'parsonalData': {
       'name': string, 
@@ -54,11 +56,46 @@ export class CharactorPage {
     'skills': []
   }
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public actionSheetCtrl: ActionSheetController,
+    public myApp: MyApp
+  ) {}
 
   ionViewDidLoad() {
-    var i = this.navParams.get('id');
-    this.charactor = JSON.parse(localStorage.getItem('charaList'))[i];
+    this.charaIndex = this.navParams.get('id');
+    this.charactor = JSON.parse(localStorage.getItem('charaList'))[this.charaIndex];
+  }
+  crud() {
+    let action = this.actionSheetCtrl.create({
+      title: 'キャラクター変更',
+      buttons:[
+        {
+          text: '削除',
+          role: 'destructive',
+          handler: () => {
+            var charactor = JSON.parse(localStorage.getItem('charaList'));
+            charactor.splice(this.charaIndex, 1);
+            localStorage.setItem('charaList', charactor);
+            this.myApp.openPage(this.myApp.pages[0]);
+          }
+        },{
+          text: '変更',
+          handler: () => {
+            alert('未実装也')
+            console.log('Destory');
+          }
+        },{
+          text: '閉じる',
+          role: 'cancel',
+          handler: () => {
+            console.log('Destory');
+          }
+        }
+      ]
+    });
+    action.present();
+
   }
 }
