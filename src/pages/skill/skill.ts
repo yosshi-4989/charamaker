@@ -109,7 +109,6 @@ export class SkillPage {
           skill.point = s[3];
         }
       }, skills);
-      console.log(skills)
       // TODO 技能名を変更できる技能をskillsに登録する処理を追加
     }
   }
