@@ -125,4 +125,7 @@ export class CharaMakerPage {
   getRandom(min, max) {
     return Math.floor(Math.random() * (max - min) + min);
   }
+  range(n) {
+    return Array.from(Array(n).keys()).slice(1)
+  }
 }

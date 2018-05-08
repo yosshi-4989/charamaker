@@ -9,19 +9,33 @@
 
 <ion-content>
   <div style="text-align: center; padding-top: 10px;">
-   <button ion-button (click)="diceRoll()" style="margin: auto;">ダイスロール</button>
+    <!--
+    <button ion-button (click)="diceRoll()" style="margin: auto;">ダイスロール</button>
+    -->
   </div>
-  <form padding (submit)="submitAbility()" #f="ngForm">
     <ion-grid>
+      <form padding (submit)="submitAbility()">
       <ion-row *ngFor="let i of [0, 3, 6]">
         <ion-col *ngFor="let j of [i, i+1, i+2]">
           <ion-item *ngIf="abilities[j].name != ''">
             <ion-label floating>{{abilities[j].name}}</ion-label>
-            <ion-input type="number" [(ngModel)]="abilities[j].point" [ngModelOptions]="{standalone: true}" pattern="[0-9]*[1-9]" min=1></ion-input>
+            <ion-select [(ngModel)]="abilities[j].point" [ngModelOptions]="{standalone: true}" interface="action-sheet">
+              <ion-option *ngFor="let k of range(23)" value="{{k}}">{{k}}</ion-option>
+            </ion-select>
           </ion-item>
         </ion-col>
       </ion-row>
+      </form>
+      <ion-row>
+        <ion-col>
+          <button ion-button block (click)="diceRoll()">ダイスロール</button>
+        </ion-col>
+        <ion-col>
+          <button type="submit" ion-button block [disabled]="!isValid()">確定</button>
+        </ion-col>
+      </ion-row>
     </ion-grid>
+    <!--
     <button type="submit" ion-button block [disabled]="!isValid()">確定</button>
-  </form>
+    -->
 </ion-content>
