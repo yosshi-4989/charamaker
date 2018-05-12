@@ -14,24 +14,25 @@
     -->
   </div>
     <ion-grid>
-      <form padding (submit)="submitAbility()">
+  <form padding (submit)="submitAbility()" id="ability">
       <ion-row *ngFor="let i of [0, 3, 6]">
         <ion-col *ngFor="let j of [i, i+1, i+2]">
           <ion-item *ngIf="abilities[j].name != ''">
             <ion-label floating>{{abilities[j].name}}</ion-label>
             <ion-select [(ngModel)]="abilities[j].point" [ngModelOptions]="{standalone: true}" interface="action-sheet">
-              <ion-option *ngFor="let k of range(23)" value="{{k}}">{{k}}</ion-option>
+              <ion-option></ion-option>
+              <ion-option *ngFor="let k of range(1,23)" value="{{k}}">{{k}}</ion-option>
             </ion-select>
           </ion-item>
         </ion-col>
       </ion-row>
-      </form>
+  </form>
       <ion-row>
         <ion-col>
           <button ion-button block (click)="diceRoll()">ダイスロール</button>
         </ion-col>
         <ion-col>
-          <button type="submit" ion-button block [disabled]="!isValid()">確定</button>
+          <button type="submit" ion-button block [disabled]="!isValid()" form="ability">確定</button>
         </ion-col>
       </ion-row>
     </ion-grid>

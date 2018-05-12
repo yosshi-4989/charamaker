@@ -152,9 +152,20 @@ export class SkillPage {
     var freeP = this.skillPoint.freeSkillPoint - sumPoint[1];
     this.usableSkillPoint.jobSkillPoint = jobP;
     this.usableSkillPoint.freeSkillPoint = freeP;
-    return "職業技能：" + jobP + "   自由技能：" + freeP;
+    return "職業技能：" + this.usableSkillPoint.jobSkillPoint + "   自由技能：" + this.usableSkillPoint.freeSkillPoint;
   }
   calcMaxPoint(initPoint: number) {
     return 99 - 1*initPoint;
   } 
+  range(start, end) {
+    if (typeof end == "undefined") {
+      end = start;
+      start = 0;
+    }
+    return Array.from(Array(end+1).keys()).slice(start);
+  }
+  maxPoint(skill: {'name': string, 'default': number, 'jobPoint': number, 'freePoint': number, 'point': number, 'addFlag': boolean}, currentPoint: string, anotherPoint: string) {
+    this.calcUsablePoint()
+    return Math.min(99 - 1*skill.default - 1*skill[anotherPoint], 1*this.usableSkillPoint[currentPoint.replace(/Point/g, 'SkillPoint')]+1*skill[currentPoint])
+  }
 }

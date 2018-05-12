@@ -35,12 +35,20 @@
           </td>
           <td>
             <ion-item>
-              <ion-input type="number" [(ngModel)]="skill.jobPoint" [ngModelOptions]="{standalone: true}" min="0"></ion-input>
+            <ion-label floating></ion-label>
+              <ion-select [(ngModel)]="skill.jobPoint" [ngModelOptions]="{standalone: true}" interface="action-sheet">
+                <ion-option></ion-option>
+                <ion-option *ngFor="let k of range(1,maxPoint(skill, 'jobPoint', 'freePoint'))" value="{{k}}">{{k}}</ion-option>
+              </ion-select>
             </ion-item>
           </td>
           <td>
             <ion-item>
-              <ion-input type="number" [(ngModel)]="skill.freePoint" [ngModelOptions]="{standalone: true}" min="0"></ion-input>
+            <ion-label floating></ion-label>
+              <ion-select [(ngModel)]="skill.freePoint" [ngModelOptions]="{standalone: true}" interface="action-sheet">
+                <ion-option></ion-option>
+                <ion-option *ngFor="let k of range(1,maxPoint(skill, 'freePoint', 'jobPoint'))" value="{{k}}">{{k}}</ion-option>
+              </ion-select>
             </ion-item>
           </td>
           <td>
