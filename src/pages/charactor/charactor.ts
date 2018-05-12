@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Clipboard } from '@ionic-native/clipboard';
 import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { MyApp } from '../../app/app.component';
 import { CharaData } from '../../interfaces/chara-model';
@@ -40,7 +41,8 @@ export class CharactorPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     public actionSheetCtrl: ActionSheetController,
-    public myApp: MyApp
+    public myApp: MyApp,
+    private clipboard: Clipboard
   ) {}
 
   ionViewDidLoad() {
@@ -64,18 +66,24 @@ export class CharactorPage {
           text: '変更',
           handler: () => {
             alert('未実装也')
-            console.log('Destory');
+          }
+        },{
+          text: 'コピー',
+          handler: () => {
+            let obj = "sample";
+            this.clipboard.copy(obj)
           }
         },{
           text: '閉じる',
           role: 'cancel',
-          handler: () => {
-            console.log('Destory');
-          }
         }
       ]
     });
     action.present();
 
+  }
+
+  private _generate_copy_text(){
+    return "";
   }
 }
