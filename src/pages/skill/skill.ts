@@ -23,6 +23,7 @@ export class SkillPage {
   }
 
   ionViewWillEnter() {
+    // 能力値依存の初期値をセット
     if (localStorage.getItem('ability')) {
       var ability = JSON.parse(localStorage.getItem('ability'));
       this.skills[7].default = 2 * ability.DEX;
@@ -100,6 +101,6 @@ export class SkillPage {
   }
   maxPoint(skill: {'name': string, 'default': number, 'jobPoint': number, 'freePoint': number, 'point': number, 'addFlag': boolean}, currentPoint: string, anotherPoint: string) {
     this.calcUsablePoint()
-    return Math.min(99 - 1*skill.default - 1*skill[anotherPoint], 1*this.usableSkillPoint[currentPoint.replace(/Point/g, 'SkillPoint')]+1*skill[currentPoint])
+    return Math.max(0, Math.min(99 - 1*skill.default - 1*skill[anotherPoint], 1*this.usableSkillPoint[currentPoint.replace(/Point/g, 'SkillPoint')]+1*skill[currentPoint]));
   }
 }

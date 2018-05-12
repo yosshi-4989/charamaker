@@ -47,6 +47,7 @@ export class CharaMakerPage {
       'freeSkillPoint': 10*this.ability['INT']
     }
     localStorage.setItem('skillPoint', JSON.stringify(skillPoint));
+    localStorage.removeItem('skills');
 
     this.navCtrl.push('SkillPage');
   }
