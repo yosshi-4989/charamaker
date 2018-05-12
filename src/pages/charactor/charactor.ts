@@ -67,11 +67,11 @@ export class CharactorPage {
           handler: () => {
             alert('未実装也')
           }
-        },{
-          text: 'コピー',
-          handler: () => {
-            this.clipboard.copy(this._generate_copy_text())
-          }
+        //},{
+        //  text: 'コピー',
+        //  handler: () => {
+        //    this.clipboard.copy(this._generate_copy_text())
+        //  }
         },{
           text: '閉じる',
           role: 'cancel',
