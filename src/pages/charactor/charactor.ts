@@ -70,8 +70,7 @@ export class CharactorPage {
         },{
           text: 'コピー',
           handler: () => {
-            let obj = "sample";
-            this.clipboard.copy(obj)
+            this.clipboard.copy(this._generate_copy_text())
           }
         },{
           text: '閉じる',
@@ -84,6 +83,27 @@ export class CharactorPage {
   }
 
   private _generate_copy_text(){
-    return "";
+    let pData = this.charactor.parsonalData
+    let abi = this.charactor.ability
+    let sta = this.charactor.status
+    let skl = this.charactor.skills
+
+    let parsonal = "#{pData.name}(#{pData.kana})¥n";
+    parsonal += "年齢: #{pData.age}¥n性別: #{pData.sex}¥n";
+    parsonal += "職業: #{pData.job}¥n出身地: #{pData.growPlace}¥n";
+    parsonal += "その他: #{pData.memo}¥n";
+
+    let ability = "STR: #{abi.STR}  DEX: #{abi.DEX}  INT: #{abi.INT}  アイデア: #{abi.IDEA}¥n"
+    ability += "CON: #{abi.CON}  APP: #{abi.APP}  POW: #{abi.POW}  幸運: #{abi.LUCK}¥n"
+    ability += "SIZ: #{abi.SIZ}  SAN: #{abi.SAN}  EDU: #{abi.EDU}  知識: #{abi.KNOW}¥n"
+    ability += "最大正気度ポイント: #{abi.MAXSAN}  ダメージボーナス: #{abi.DB}¥n"
+    ability += "¥nHP: #{sta.HP}  MP: #{sta.MP}  現在正気度ポイント: #{sta.SANpoint}¥n"
+
+    let skills = "";
+    for (let skill of skl) {
+      skills += "#{skill.name}: #{skill.point}¥n"
+    }
+
+    return parsonal + ability + skills;
   }
 }
