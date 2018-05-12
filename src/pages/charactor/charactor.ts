@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
 import { MyApp } from '../../app/app.component';
+import { CharaData } from '../../interfaces/chara-model';
 
 @IonicPage({
   segment: 'charactor/:id',
@@ -12,28 +13,7 @@ import { MyApp } from '../../app/app.component';
 })
 export class CharactorPage {
   charaIndex: number;
-  charactor: {
-    'parsonalData': {
-      'name': string, 
-      'kana': string, 
-      'age': number,
-      'sex': string,
-      'job': string,
-      'growPlace': string,
-      'memo': string
-    },
-    'ability': {
-      'STR': number, 'DEX': number, 'INT': number, 'IDEA': number,
-      'CON': number, 'APP': number, 'POW': number, 'LUCK': number,
-      'SIZ': number, 'SAN': number, 'EDU': number, 'KNOW': number,
-      'MAXSAN': number, 'DB': string
-    },
-    'status': {
-      'HP': number, 'MP': number,
-      'SANpoint': number
-    },
-    'skills': {name: string, point: number}[]
-  } = {
+  charactor: CharaData  = {
     'parsonalData': {
       'name': null, 
       'kana': null, 
@@ -54,7 +34,7 @@ export class CharactorPage {
       'SANpoint': null
     },
     'skills': []
-  }
+  };
 
   constructor(
     public navCtrl: NavController,

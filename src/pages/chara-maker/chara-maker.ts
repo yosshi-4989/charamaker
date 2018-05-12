@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { Ability, Status, SkillPoint } from '../../interfaces/chara-model';
 
 @IonicPage()
 @Component({
@@ -18,24 +19,17 @@ export class CharaMakerPage {
     {name: '', point: null},
     {name: 'EDU', point: null}
   ];
-  ability: {
-    'STR': number, 'DEX': number, 'INT': number, 'IDEA': number,
-    'CON': number, 'APP': number, 'POW': number, 'LUCK': number,
-    'SIZ': number, 'SAN': number, 'EDU': number, 'KNOW': number,
-    'MAXSAN': number, 'DB': string
-  } = {
+  ability: Ability  = {
     'STR': null, 'DEX': null, 'INT': null, 'IDEA': null,
     'CON': null, 'APP': null, 'POW': null, 'LUCK': null,
     'SIZ': null, 'SAN': null, 'EDU': null, 'KNOW': null,
     'MAXSAN': null, 'DB': ''
   };
-  status: {
-    'HP': number, 'MP': number,
-    'SANpoint': number
-  } = {
+  status: Status = {
     'HP': null, 'MP': null,
     'SANpoint': null
   };
+  // TODO {上限値:ダメボ}の連想配列でダメボ集計するようにする. また、定数として連想配列を外に書き出す
   damage_bonus: Array<string> = ['-1d6', '-1d4', '0', '+1d4', '+1d6', '+2d6'];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
@@ -48,7 +42,7 @@ export class CharaMakerPage {
     localStorage.setItem('ability', JSON.stringify(this.ability));
     localStorage.setItem('status', JSON.stringify(this.status));
 
-    var skillPoint = {
+    let skillPoint: SkillPoint = {
       'jobSkillPoint': 20*this.ability['EDU'],
       'freeSkillPoint': 10*this.ability['INT']
     }

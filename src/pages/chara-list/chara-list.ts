@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { CharaData } from '../../interfaces/chara-model';
 
 @IonicPage()
 @Component({
@@ -7,7 +8,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'chara-list.html',
 })
 export class CharaListPage {
-  charaList: Array<any> = [];
+  charaList: Array<CharaData> = [];
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }

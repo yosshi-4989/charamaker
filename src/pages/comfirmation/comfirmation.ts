@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { MyApp } from '../../app/app.component';
+import { ParsonalData, Ability, Status, CharaData } from '../../interfaces/chara-model';
 
 @IonicPage()
 @Component({
@@ -8,15 +9,7 @@ import { MyApp } from '../../app/app.component';
   templateUrl: 'comfirmation.html',
 })
 export class ComfirmationPage {
-  parsonalData: {
-    'name': string, 
-    'kana': string, 
-    'age': number,
-    'sex': string,
-    'job': string,
-    'growPlace': string,
-    'memo': string
-  } = {
+  parsonalData: ParsonalData = {
     'name': null, 
     'kana': null, 
     'age': null,
@@ -25,21 +18,13 @@ export class ComfirmationPage {
     'growPlace': null,
     'memo': null
   };
-  ability: {
-    'STR': number, 'DEX': number, 'INT': number, 'IDEA': number,
-    'CON': number, 'APP': number, 'POW': number, 'LUCK': number,
-    'SIZ': number, 'SAN': number, 'EDU': number, 'KNOW': number,
-    'MAXSAN': number, 'DB': string
-  } = {
+  ability: Ability = {
     'STR': null, 'DEX': null, 'INT': null, 'IDEA': null,
     'CON': null, 'APP': null, 'POW': null, 'LUCK': null,
     'SIZ': null, 'SAN': null, 'EDU': null, 'KNOW': null,
     'MAXSAN': null, 'DB': ''
   };
-  status: {
-    'HP': number, 'MP': number,
-    'SANpoint': number
-  } = {
+  status: Status = {
     'HP': null, 'MP': null,
     'SANpoint': null
   };
@@ -66,7 +51,7 @@ export class ComfirmationPage {
     }
   }
   submitConfirmation() {
-    var chara = {
+    var chara: CharaData = {
       'parsonalData': this.parsonalData,
       'ability': this.ability,
       'status': this.status,

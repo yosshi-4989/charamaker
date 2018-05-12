@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { ParsonalData } from '../../interfaces/chara-model';
 
 @IonicPage()
 @Component({
@@ -7,15 +8,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'parsonal.html',
 })
 export class ParsonalPage {
-  parsonalData: {
-    'name': string, 
-    'kana': string, 
-    'age': number,
-    'sex': string,
-    'job': string,
-    'growPlace': string,
-    'memo': string
-  } = {
+  parsonalData: ParsonalData = {
     'name': null, 
     'kana': null, 
     'age': null,
